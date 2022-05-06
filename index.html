@@ -1,44 +1,36 @@
-<!-- hereda del primer template-->
 <!DOCTYPE html>
+<html>
 
-<html lang="en">
-    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
 <body>
-    <script src="script.js"></script>
-
-    <div class="container" ng-app="tabApp">
-        <div class="row" ng-controller="TabController">
-            <div class="col-md-2">
-                <ul class="nav nav-pills nav-stacked">
-                <li ng-class="{ active: isSet(1) }">
-                    <a href ng-click="setTab(1)">Home</a>
-                </li>
-                <li ng-class="{ active: isSet(2) }">
-                    <a href ng-click="setTab(2)">Profile</a>
-                </li>
-                <li ng-class="{ active: isSet(3) }">
-                    <a href ng-click="setTab(3)">Messages</a>
-                </li>
-                </ul>
-            </div>
-        <div class="col-md-8">
-                <div class="jumbotron">
-                <div ng-show="isSet(1)">
-                    <h1>Home page</h1>
-                    <p>Welcome to the website!</p>
-                    <p><a class="btn btn-primary btn-lg" 			role="button">Learn more</a></p>
-                </div>
-                <div ng-show="isSet(2)">
-                <h1>Profile page</h1>
-                <p>Profile information</p>
-                </div>
-                <div ng-show="isSet(3)">
-                <h1>Messages</h1>
-                <p> Some messages </p>
-                </div>
-            </div>
-        </div>
-        </div>
+  
+  <script src="script.js"></script>
+  <div class="login-box">
+  <h2>Login</h2>
+  <form>
+    <div class="user-box">
+      <input type="text" name="" required="">
+      <label>Usuario</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="" required="">
+      <label>Contraseña</label>
+    </div>
+    <a href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </a>
+  </form>
+</div>
 </body>
-{% endblock %}
+
+</html>
