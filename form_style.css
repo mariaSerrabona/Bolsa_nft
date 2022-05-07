@@ -1,0 +1,66 @@
+$details: #586F7C;
+
+body {
+	background-color: #7CB2BD;
+    font-family: 'Lato', sans-serif;
+}
+
+.container {
+    text-align: center;
+	background-color: #7CB2BD;
+}
+
+#title h2 {
+    padding: 20px;
+    font-weight: bold;
+    letter-spacing: 12px;
+}
+
+input {
+    color: #000000;
+	border: 1px solid #000700;
+    border-style: inset;
+    margin: 10px;
+	padding: 15px;
+    background-color: #7CB2BD;
+}
+
+input,
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    font-size: 15px;
+    color: #000000;
+
+}
+
+input[type=text]:focus, textarea:focus {
+	box-shadow: inset 0px 0px 0px 3px $details;
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    color: #000000;
+}
+
+input[type=button] {
+    color: #000000;
+    background-color: $details;
+}
+
+input[type=button]:hover {
+	border: 3px solid $details;
+    color: $details;
+    font-weight: bold;
+    color: #000000;
+
+}
+
+textarea {
+	background-color: transparent;
+	border: 1px solid $details;
+	padding: 15px;
+}
+
+input[type=text]:hover, textarea:hover {
+	box-shadow: inset 0px 0px 0px 3px $details;
+}
+

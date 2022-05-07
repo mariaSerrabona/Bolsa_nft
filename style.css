@@ -6,4 +6,100 @@ p {
 h1 {
   margin: 50px;
   font-size: 300%;
+  font-weight: 900;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #4d81c5;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 100px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+#menu ul li {
+  background-color:#8b2e64;
+}
+
+#menu ul {
+list-style:none;
+margin: 0px;;
+padding:0;
+}
+
+#menu ul a {
+display:block;
+color:#fff;
+text-decoration:none;
+font-weight:400;
+font-size:15px;
+padding:10px;
+font-family:"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+text-transform:uppercase;
+letter-spacing:1px;
+}
+
+#menu ul li {
+position:relative;
+float:left;
+margin: 0;
+padding:0;
+}
+
+#menu ul li:hover {
+background:#F5A3D9;
+}
+
+#menu ul ul {
+display:none;
+position:absolute;
+top:100%;
+left:0;
+padding:0;
+}
+
+#menu ul ul li {
+float:none;
+width:150px
+}
+
+#menu ul ul a {
+line-height:120%;
+padding:10px 15px;
+}
+
+#menu ul li:hover > ul {
+display:block;
 }
