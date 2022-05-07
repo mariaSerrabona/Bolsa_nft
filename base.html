@@ -26,7 +26,7 @@
     <script type="text/javascript">
       Bokeh.set_log_level("info");
     </script>
-        
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/@holoviz/panel@0.13.0/dist/bundled/bootstraptemplate/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/@holoviz/panel@0.13.0/dist/bundled/defaulttheme/default.css">
@@ -42,6 +42,10 @@
 
     <link rel="stylesheet" href="../build/pyscript.css" />
     <script defer src="../build/pyscript.js"></script>
+
+
+    <script defer src="../Bolsa_nft/main.py"></script>
+
   </head>
   
   <py-env>
@@ -60,8 +64,9 @@
 	</button>
 	<div class="app-header">
 	  <a class="navbar-brand app-logo" href="/">
+	    <img src="./logo.png" class="app-logo">
 	  </a>
-	  <a class="title" href="" style="color: #f0ab3c;">BOLSA DE NFTs</a>
+	  <a class="title" href="" style="color: #f0ab3c;">Panel KMeans Clustering Demo</a>
 	</div>
       </nav>
 
@@ -81,7 +86,38 @@
       </div>
     </div>
     <py-script>
+import asyncio
 
+import altair as alt
+import panel as pn
+import pandas as pd
+
+from panel.io.pyodide import show
+from sklearn.cluster import KMeans
+from pyodide.http import open_url
+
+pn.config.sizing_mode = 'stretch_width'
+
+url = 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-28/penguins.csv'
+penguins = pd.read_csv(open_url(url)).dropna()
+cols = list(penguins.columns)[2:6]
+
+x = pn.widgets.Select(name='x', options=cols, value='bill_depth_mm')
+y = pn.widgets.Select(name='y', options=cols, value='bill_length_mm')
+n_clusters = pn.widgets.IntSlider(name='n_clusters', start=1, end=5, value=3)
+
+brush = alt.selection_interval(name='brush')  # selection of type "interval"
+
+def get_clusters(n_clusters):
+    kmeans = KMeans(n_clusters=n_clusters)
+    est = kmeans.fit(penguins[cols].values)
+    df = penguins.copy()
+    df['labels'] = est.labels_.astype('str')
+    return df
+
+def get_chart(x, y, df):
+    centers = df.groupby('labels').mean()
+    return (alt.Chart(df)
         .mark_point(size=100)
         .encode(
             x=alt.X(x, scale=alt.Scale(zero=False)),
@@ -102,6 +138,33 @@ def update_table(event=None):
 
 n_clusters.param.watch(update_table, 'value')
 
+@pn.depends(x, y, n_clusters, watch=True)
+def update_chart(*events):
+    chart.object = get_chart(x.value, y.value, table.value)
+    chart.selection.param.watch(update_filters, 'brush')
+
+def update_filters(event=None):
+    filters = []
+    for k, v in (getattr(event, 'new') or {}).items():
+       filters.append(dict(field=k, type='>=', value=v[0]))
+       filters.append(dict(field=k, type='<=', value=v[1]))
+    table.filters = filters
+
+update_table()
+update_chart()
+
+intro = """
+Bienvenido a la página oficial de Bolsa de NFTs. En este espacio podrá comprar y
+vender NFTs mediante anuncios.
+"""
+
+await show(x, 'x-widget')
+await show(y, 'y-widget')
+await show(n_clusters, 'n-widget')
+await show(intro, 'intro')
+await show(chart, 'cluster-plot')
+await show(table, 'table')
+    </py-script>
     <script>
       $(document).ready(function () {
 	$('#sidebarCollapse').on('click', function () {

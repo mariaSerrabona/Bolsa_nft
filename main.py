@@ -30,7 +30,7 @@ class Comprador:
 
         while (count<numero):
 
-            print(f"El consumidor- {userName} está comiendo el bollo {count+1}")
+            print(f"El consumidor- {userName} Ha visto el anuncio {count+1}")
 
             count+=1
 
@@ -71,16 +71,16 @@ class Vendedor:
 
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    numero=input('Introduce el número de bollos que se quiere realizar: ')
-    numero=int(numero)
+#     numero=input('Introduce el número de anuncios que se quiere visualizar: ')
+#     numero=int(numero)
 
-    t1 = Thread(target=Vendedor.producer,args=(Vendedor.userName,numero))
+#     t1 = Thread(target=Vendedor.producer,args=(Vendedor.userName,numero))
 
-    t2 = Thread(target=Comprador.customer,args=(Comprador.userName,numero))
+#     t2 = Thread(target=Comprador.customer,args=(Comprador.userName,numero))
 
-    t1.start()
+#     t1.start()
 
-    t2.start()
+#     t2.start()
 
