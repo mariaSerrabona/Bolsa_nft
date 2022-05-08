@@ -51,12 +51,14 @@ h1 {
 
 #menu ul li {
   background-color:#8b2e64;
+  margin-left: 30px;
 }
 
 #menu ul {
-list-style:none;
-margin: 0px;;
-padding:0;
+  list-style:none;
+  margin: 0px;;
+  padding:0;
+  margin-left: 30px;
 }
 
 #menu ul a {
@@ -69,6 +71,7 @@ padding:10px;
 font-family:"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 text-transform:uppercase;
 letter-spacing:1px;
+margin-left: 30px;
 }
 
 #menu ul li {
@@ -76,10 +79,12 @@ position:relative;
 float:left;
 margin: 0;
 padding:0;
+margin-left: 30px;
 }
 
 #menu ul li:hover {
 background:#F5A3D9;
+margin-left: 30px;
 }
 
 #menu ul ul {
@@ -88,11 +93,12 @@ position:absolute;
 top:100%;
 left:0;
 padding:0;
+margin-left: 30px;
 }
 
 #menu ul ul li {
 float:none;
-width:150px
+width:150px;
 }
 
 #menu ul ul a {
