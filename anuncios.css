@@ -1,53 +1,71 @@
-html, body {
-    height: 100%;
-    width: 100%;
-  }
-  
-  * {
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300);
+
+html {
+        padding-top: 50px;
+        font-family: 'Open Sans', Helvetica, arial, sans-serif;
+        text-align: center;
+        background-color: #eeeeee;
+    }
+
+    i,em,
+    b,strong,
+    span {
+        transition: none;
+    }
+
+
+*:before,
+*:after {
+    z-index: -1;
+}
+
+h1 {
+    font-family: 'Raleway', 'Open Sans', sans-serif;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: arial;
+    line-height: 1;
+    font-size: 300%;
+}
+
+a {
+    text-decoration: none;
+    line-height: 80px;
+    color: black;
+}
+
+.centerer {
     width: 100%;
-    min-width: 320px;
-  }
-  
-  header{
-    text-align: center;
-    padding-top: 20px;
-  }
-  
-  section {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 1rem
+}
+section {
     width: 90%;
     margin: 20px auto;
     position: relative;
     cursor: pointer;
     overflow: hidden;
-  }
-  
-  @media only screen and (min-width: 1024px) {
+}
+
+@media only screen and (min-width: 1024px) {
     article {
-      display: flex;
+    display: flex;
     }
     section {
-      width: 30%;
+    width: 30%;
     }
-  }
-  
-  section:hover .scroll {
+}
+
+section:hover .scroll {
     top: 0;
-  }
-  
-  .project {
+}
+
+.project {
     width: 100%;
     display: block;
     border-radius: 2px;
-  }
-  
-  .scroll {
+}
+
+.scroll {
     position: absolute;
     top: 100%;
     height: 100%;
@@ -55,15 +73,14 @@ html, body {
     color: #333;
   /*   display: none; */
     transition: top 0.6s;
-  }
-  
-  .scroll h1 {
+}
+
+.scroll h1 {
     padding: 10px;
     font-size: 20px;
     letter-spacing: 0.2em;
     text-align: center;
-  }
-  .scroll p {
+}
+.scroll p {
     padding: 10px;
-  }
-  
+}
