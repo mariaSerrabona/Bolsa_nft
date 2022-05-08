@@ -1,5 +1,6 @@
 p {
   margin: 50px;
+  font-family: 'Raleway', 'Open Sans', sans-serif;
 }
 
 
@@ -7,6 +8,7 @@ h1 {
   margin: 50px;
   font-size: 300%;
   font-weight: 900;
+  font-family: 'Raleway', 'Open Sans', sans-serif;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');

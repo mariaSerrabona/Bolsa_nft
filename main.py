@@ -69,7 +69,18 @@ class Vendedor:
 
 #ver los NFTs, como si fueran bollos que uno los produce (vendedor) y otro los consume (comprador)
 
+class nft:
 
+    tipo_riesgo=['alto', 'bajo', 'medio']
+    name='1'
+    precio=8402.38
+    descripcion='nft bonito'
+
+    def __init__(self,tipo_riesgo, name, precio, descripcion):
+        self.tipo_riesgo=tipo_riesgo
+        self.name=name
+        self.precio=precio
+        self.descripcion=descripcion
 
 # if __name__ == '__main__':
 
