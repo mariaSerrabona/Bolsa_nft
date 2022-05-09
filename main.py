@@ -39,6 +39,15 @@ class Comprador:
             time.sleep(1)
 
 
+    #función para cuando un nft le interesa al comprador
+    def interesa_nft(userName):
+        print('Hola! Soy '+userName+ ' me ha interesado tu anuncio y quiero comprar tu nft')
+        #no sé cómo notoficar el vendedor
+        #cómo eliminar el anuncio
+
+
+
+
 class Vendedor:
     userName='hola'
 
