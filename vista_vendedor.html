@@ -1,6 +1,8 @@
+<!-- vista del comprador-->
+
 <!DOCTYPE html>
 <html lang="en">
-  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
 <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 
 <head>
@@ -8,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./vista_comprador.css">
 
     <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.js"></script>
     <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.2.js"></script>
@@ -20,35 +22,17 @@
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 
 
-    <title>Bolsa de NFTs</title>
+    <title>VISTA VENDEDOR</title>
 </head>
 
-  <py-env>
-  </py-env>
+    <h1> BIENBENIDO A LA VISTA VENDEDOR</h1><br>
+    <p> Ya está listo para vender NFTs!</p><br>
+        <p> En este espacio podrás crear anuncios para vender tus NFTs así como ver y comprar los NFTs de otros vendedores. </p><br>
 
-    <body  >
+<body>
+    <button class="button" onclick="location.href='./tablon_anuncios.html'">Ver anuncios</button>
+    <button class="button"onclick="location.href='./formulario.html'">Crear anuncio</button>
 
-      <!-- titulo de la página-->
-      <h1>Bolsa de NFTs</h1>
 
-          <p>Bienvenido a la página oficial de Bolsa de NFTs. En este espacio podrá comprar y
-            vender NFTs mediante anuncios.</p>
-
-            <a onclick="location.href='./vista_vendedor.html'">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              Vista Vendedor
-          </a>
-          <a onclick="location.href='./vista_comprador.html'">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              Vista Comprador
-          </a>
-
-      </body>
-
+</body>
 </html>
