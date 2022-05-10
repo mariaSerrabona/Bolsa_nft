@@ -1,25 +1,32 @@
 import threading
-import time
 
 #lo primero que vamos a hacer es crear un nft como un hilo básico
 
+class hilo:
+    def __intit__(self, name, risk):
+        self.name=name
+        self.risk=risk
+
+
 #creamos una función cualquiera para ver que funciona
-def creating(name, type_risk):
-    print('nft name is: '+ name)
-    time.sleep(2)
-    print('nft risk type is: '+type_risk)
-
 hilos=[]
+def creating(hilo_apertura):
+    name1=input('nombre: ')
+    risk1=input('riesgo: ')
 
-for _ in range (3):
-    name=input('nombre: ')
-    risk=input('riesgo: ')
-
-    t=threading.Thread(target=creating, args=[name, risk])
+    t=threading.Thread(target=creating, args=[name1, risk1])
     t.start()
     hilos.append(t)
 
+def closing (hilo_cierre):
+    hilo_cierre.join()
+
+
+hilo1=hilo('hilouno', 'low')
+creating(hilo1)
+
 for hilo in hilos:
-    hilo.join()
+    closing(hilo)
+
 
 print('hilos termiandos')
