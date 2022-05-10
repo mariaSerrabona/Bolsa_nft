@@ -29,4 +29,29 @@ for hilo in hilos:
     closing(hilo)
 
 
+
+# class Hilo:
+    
+#     # constructor
+#     # initialize instance variable
+#     def __init__(self, name, risk):
+#         self.name = name
+#         self.risk = risk
+
+
+#     def creatint(self):
+#       t=threading.Thread(args=[self.name, self.risk])
+#       t.start()
+#       time.sleep(10)
+#       t.join()
+
+
+
+# # create object using constructor
+# s1 = Hilo('nft1', 'low')
+# s1.creatint()
+
+# print('done')
+
+
 print('hilos termiandos')
