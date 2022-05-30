@@ -1,57 +1,71 @@
-import threading
+#clase que representa a la barbería
+#se importan hilo para poder representar a los usuarios.
 
-#lo primero que vamos a hacer es crear un nft como un hilo básico
+from threading import Thread, Lock, Event
+import time, random
+import vendedor
+import comprador
 
-class hilo:
-    def __intit__(self, name, risk):
-        self.name=name
-        self.risk=risk
+#este mutex funciona como un bloqueador del hilo
+#eso significa que se bloqueará la ejecución el siguiente hilo cuando otro esté en proceso
+#en la vida real significaría, no dejar pasar a un cliente mientras ya se está atendiendo a uno
+mutex = Lock()
 
-
-#creamos una función cualquiera para ver que funciona
-hilos=[]
-def creating(hilo_apertura):
-    name1=input('nombre: ')
-    risk1=input('riesgo: ')
-
-    t=threading.Thread(target=creating, args=[name1, risk1])
-    t.start()
-    hilos.append(t)
-
-def closing (hilo_cierre):
-    hilo_cierre.join()
+#Interval in seconds
+#del mismo modo, se definen los intervalos en segundos para diferentes pprocesos.
+customerIntervalMin = 5
+customerIntervalMax = 15
+haircutDurationMin = 3
+haircutDurationMax = 15
 
 
-hilo1=hilo('hilouno', 'low')
-creating(hilo1)
+class nft:
+    waitingCustomers = []
 
-for hilo in hilos:
-    closing(hilo)
+#constructor con todos los atributos que definen a una barbería
+	def _init_(self, barber, numberOfSeats):
+		self.barber = barber
+		self.numberOfSeats = numberOfSeats
+		print ('BarberShop initilized with {0} seats'.format(numberOfSeats))
+		print ('Customer min interval {0}'.format(customerIntervalMin))
+		print ('Customer max interval {0}'.format(customerIntervalMax))
+		print ('Haircut min duration {0}'.format(haircutDurationMin))
+		print ('Haircut max duration {0}'.format(customerIntervalMax))
+		print ('---------------------------------------')
 
+#señal de que la barbería está abierta: se pueden empezar a ejecutar los hilos en orden
+	def openShop(self):
+		print ('Barber shop is opening')
+		workingThread = Thread(target = self.barberGoToWork)
+		workingThread.start()
 
+	#mientras no haya un bloqueo, el barbero se pone a trabajar
+	def barberGoToWork(self):
+		while True:
+			mutex.acquire()
+			#sentencias para poder pasar de un cliente a otro, clientes que se almacenan en la lista de espera
+			if len(self.waitingCustomers) > 0:
+				c = self.waitingCustomers[0]
+				del self.waitingCustomers[0]
+				mutex.release()
+				self.vendedor.cutHair(c)
+			else:
+				#mientras no haya clientes en espera, el barbero se va a dormir
+				mutex.release()
+				print('Aaah, all done, going to sleep')
+				vendedor.sleep()
+				print('Barber woke up')
 
-# class Hilo:
-    
-#     # constructor
-#     # initialize instance variable
-#     def __init__(self, name, risk):
-#         self.name = name
-#         self.risk = risk
+#generar la cola para atender a los clientes
+	def enterBarberShop(self, customer):
+		mutex.acquire()
+		print ('>> {0} entered the shop and is looking for a seat'.format(comprador.name))
 
-
-#     def creatint(self):
-#       t=threading.Thread(args=[self.name, self.risk])
-#       t.start()
-#       time.sleep(10)
-#       t.join()
-
-
-
-# # create object using constructor
-# s1 = Hilo('nft1', 'low')
-# s1.creatint()
-
-# print('done')
-
-
-print('hilos termiandos')
+		if len(self.waitingCustomers) == self.numberOfSeats:
+			print ('Waiting room is full, {0} is leaving.'.format(comprador.name))
+			mutex.release()
+		else:
+			print ('{0} sat down in the waiting room'.format(customer.name))
+			self.waitingCustomers.append(c)
+			mutex.release()
+			vendedor.Barber.wakeUp()

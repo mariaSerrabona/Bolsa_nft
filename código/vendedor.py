@@ -1,13 +1,14 @@
-from queue import Queue
-
-from threading import Thread
-
-import time
+from threading import Thread, Lock, Event
+import time, random
+import nft
 
 
 
-
-class Comprador:
+customerIntervalMin = 5
+customerIntervalMax = 15
+haircutDurationMin = 3
+haircutDurationMax = 15
+class Vendedor:
 
     userName='hola'
     risk_wanted='low'
@@ -19,23 +20,25 @@ class Comprador:
         self.risk_wanted= risk_wanted
         self.ad_status=ad_status
 
-    def informacion(self):
-        print('Nombre del comprador: '+str(self.userName))
-        print('Riesgo requerido por el comprador : '+str(self.risk_wanted))
-        print('Estado del anuncio: '+str(self.ad_status))
 
-    #consumidor de anuncios, de nfts
+	#aquí se definen las posibñes acciones que puede hacer nuestro baarbero
+    barberWorkingEvent = Event()
 
-    def customer(userName, numero):
-        q = Queue(10)
-        count = 0
+	#dormi cuando no se tienen clientes en la cola
+	def sleep(self):
+		self.barberWorkingEvent.wait()
 
-        while (count<numero):
+	#despertarse cuando hay trabajo por hacer
+	def wakeUp(self):
+		self.barberWorkingEvent.set()
 
-            print(f"El consumidor- {userName} Ha visto el anuncio {count+1}")
+	#la acción de cortar el pelo, bloqueando el hilo de ejecución del cliente que está siendo atendido
+	def cutHair(self, customer):
+		#Set barber as busy
+		self.barberWorkingEvent.clear()
 
-            count+=1
+		print ('{0} is having a haircut'.format(customer.name))
 
-            q.task_done() # Envía una señal después de comer
-
-            time.sleep(1)
+		randomHairCuttingTime = random.randrange(haircutDurationMin, haircutDurationMax+1)
+		time.sleep(randomHairCuttingTime)
+		print ('{0} is done'.format(customer.name))
