@@ -42,7 +42,7 @@ if '_name_' == '_main_':
 
 	barber = vendedor.Vendedor()
 
-	nft = nft.nft(barber, numberOfSeats=3)
+	nft = nft.nft(nft, numberOfAds=1)
 	nft.openShop()
 
 	while len(customers) > 0:

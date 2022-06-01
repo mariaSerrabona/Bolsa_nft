@@ -10,10 +10,6 @@ haircutDurationMin = 3
 haircutDurationMax = 15
 class Vendedor:
 
-    userName='hola'
-    risk_wanted='low'
-    ad_status='accepted'
-
 
     def __init__(self, userName, risk_wanted, ad_status):
         self.userName= userName
@@ -22,23 +18,21 @@ class Vendedor:
 
 
 	#aquí se definen las posibñes acciones que puede hacer nuestro baarbero
-    barberWorkingEvent = Event()
+    AdEvent = Event()
 
-	#dormi cuando no se tienen clientes en la cola
+	#el programa se pone en suspensión cunado no hay anuncios para enseñar
 	def sleep(self):
-		self.barberWorkingEvent.wait()
+		self.AdEvent.wait()
 
-	#despertarse cuando hay trabajo por hacer
+	#despertarse cuando hay anuncios que eneseñar
 	def wakeUp(self):
-		self.barberWorkingEvent.set()
+		self.AdEvent.set()
 
-	#la acción de cortar el pelo, bloqueando el hilo de ejecución del cliente que está siendo atendido
-	def cutHair(self, customer):
+	#la acción de mostrar el anuncio, cuando un cliente está viendo un anuncio, es un hilo que está siendo ejecutado
+	def showAd(self, customer):
 		#Set barber as busy
-		self.barberWorkingEvent.clear()
+		self.AdEvent.clear()
 
-		print ('{0} is having a haircut'.format(customer.name))
 
 		randomHairCuttingTime = random.randrange(haircutDurationMin, haircutDurationMax+1)
 		time.sleep(randomHairCuttingTime)
-		print ('{0} is done'.format(customer.name))

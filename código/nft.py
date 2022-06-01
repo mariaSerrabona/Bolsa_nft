@@ -29,43 +29,37 @@ class nft:
     waitingCustomers = []
 
 #constructor con todos los atributos que definen a una barbería
-	def _init_(self, barber, numberOfSeats):
-		self.barber = barber
-		self.numberOfSeats = numberOfSeats
+	def _init_(self, nft, numberOfAds):
+		self.nft = nft
+		self.numberOfAds = numberOfAds
 
-#señal de que la barbería está abierta: se pueden empezar a ejecutar los hilos en orden
+#señal de que el mercado de compras de nfts está abierto: se pueden empezar a ejecutar los hilos en orden
 	def openShop(self):
-		print ('Barber shop is opening')
 		workingThread = Thread(target = self.barberGoToWork)
 		workingThread.start()
 
-	#mientras no haya un bloqueo, el barbero se pone a trabajar
+	#mientras no haya un bloqueo, se enseñan los anuncios
 	def barberGoToWork(self):
 		while True:
 			mutex.acquire()
-			#sentencias para poder pasar de un cliente a otro, clientes que se almacenan en la lista de espera
+			#sentencias para poder pasar de un anuncio a otro, los anuncios se almacenan en la lista de espera
 			if len(self.waitingCustomers) > 0:
 				c = self.waitingCustomers[0]
 				del self.waitingCustomers[0]
 				mutex.release()
-				self.vendedor.cutHair(c)
+				self.vendedor.showAd(c)
 			else:
-				#mientras no haya clientes en espera, el barbero se va a dormir
+				#Si no hay anuncios en espera, el programana no hacenada y no enseña anuncios
 				mutex.release()
-				print('Aaah, all done, going to sleep')
 				vendedor.sleep()
-				print('Barber woke up')
 
-#generar la cola para atender a los clientes
+#generar la cola para mostrar los anuncios
 	def enterBarberShop(self, customer):
 		mutex.acquire()
-		print ('>> {0} entered the shop and is looking for a seat'.format(comprador.name))
 
-		if len(self.waitingCustomers) == self.numberOfSeats:
-			print ('Waiting room is full, {0} is leaving.'.format(comprador.name))
+		if len(self.waitingCustomers) == self.numberOfAds:
 			mutex.release()
 		else:
-			print ('{0} sat down in the waiting room'.format(customer.name))
 			self.waitingCustomers.append(c)
 			mutex.release()
-			vendedor.Barber.wakeUp()
+			vendedor.Vendedor.wakeUp()
