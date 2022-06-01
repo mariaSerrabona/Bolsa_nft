@@ -1,3 +1,9 @@
+
+#UN INTENTO DE HACER LOS HILOS DEL BARBERO.
+#ME DA ERROR DE IDENTACIÓN Y POR ESO NO LO PUEDO PROBAR
+
+
+
 #clase que representa a la barbería
 #se importan hilo para poder representar a los usuarios.
 
@@ -26,12 +32,6 @@ class nft:
 	def _init_(self, barber, numberOfSeats):
 		self.barber = barber
 		self.numberOfSeats = numberOfSeats
-		print ('BarberShop initilized with {0} seats'.format(numberOfSeats))
-		print ('Customer min interval {0}'.format(customerIntervalMin))
-		print ('Customer max interval {0}'.format(customerIntervalMax))
-		print ('Haircut min duration {0}'.format(haircutDurationMin))
-		print ('Haircut max duration {0}'.format(customerIntervalMax))
-		print ('---------------------------------------')
 
 #señal de que la barbería está abierta: se pueden empezar a ejecutar los hilos en orden
 	def openShop(self):
